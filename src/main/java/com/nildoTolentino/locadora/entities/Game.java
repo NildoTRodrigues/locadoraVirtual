@@ -2,6 +2,7 @@ package com.nildoTolentino.locadora.entities;
 
 import java.util.Objects;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,7 +21,9 @@ public class Game {
 	private String plataforma;
 	private Double score;
 	private String imgUrl;
+	@Column(columnDefinition = "TEXT")
 	private String descricaoCurta;
+	@Column(columnDefinition = "TEXT")
 	private String descricaoLonga;
 	
 	public Game() {}
