@@ -11,17 +11,17 @@ public class Belonging {
 	@EmbeddedId
 	private BelongingPK id = new BelongingPK();
 	
-	private Integer posicion;
+	private Integer position;
 	
 
 	public Belonging() {}
 
 
-	public Belonging(Game game, GameList list, Integer posicion) {
+	public Belonging(Game game, GameList list, Integer position) {
 		id.setGame(game);
 		id.setList(list);
 				
-		this.posicion = posicion;
+		this.position = position;
 	}
 	
 	
