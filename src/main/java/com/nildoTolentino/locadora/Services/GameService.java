@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.nildoTolentino.locadora.dto.GameDTO;
 import com.nildoTolentino.locadora.dto.GameMinDTO;
 import com.nildoTolentino.locadora.entities.Game;
+import com.nildoTolentino.locadora.projection.GameMinProjection;
 import com.nildoTolentino.locadora.repository.GameRepository;
 
 @Service
@@ -20,17 +21,22 @@ public class GameService {
 	@Transactional(readOnly = true)
 	public GameDTO listaPorID(Long gameId) {
 		Game result = injetaTbGames.findById(gameId).get();
-		GameDTO dto = new GameDTO(result) ;
-		return dto;
+		return new GameDTO(result) ;
 				
 	}
 	
 	@Transactional(readOnly = true)
 	public List<GameMinDTO> listaRegsGame() {
 		var result = injetaTbGames.findAll();
-		List<GameMinDTO> dto = result.stream().map(x -> new GameMinDTO(x)).toList();
+		return result.stream().map(x -> new GameMinDTO(x)).toList();
 		
-		return dto;
+	}
+	
+	@Transactional(readOnly = true)
+	public List<GameMinDTO> procuraNaListaGamex( Long listId ) {
+		List<GameMinProjection> result = injetaTbGames.searchByList(listId);
+		return result.stream().map(x -> new GameMinDTO(x)).toList();
+		
 	}
 	
 }
